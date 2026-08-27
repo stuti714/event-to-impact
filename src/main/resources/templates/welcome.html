@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Discover useful events and awareness programmes across India with Event to Impact.">
+    <title>Welcome · Event to Impact</title>
+    <link rel="stylesheet" href="/css/auth.css">
+</head>
+<body class="welcome-page">
+<header class="welcome-nav">
+    <a class="auth-brand dark" href="/welcome">
+        <span class="auth-brand-mark">E</span>
+        <span><strong>Event to Impact</strong><small>INDIA</small></span>
+    </a>
+    <div class="welcome-nav-actions">
+        <span class="verified-note"><i></i> Sources reviewed 02 Aug 2026</span>
+        <form method="post" th:action="@{/logout}"><button class="text-button" type="submit">Sign out</button></form>
+    </div>
+</header>
+
+<main class="welcome-main">
+    <section class="welcome-hero">
+        <div class="welcome-copy">
+            <span class="welcome-kicker">YOUR NATIONWIDE AWARENESS COMPANION</span>
+            <h1>Find events<br>worth your time.</h1>
+            <p>Explore source-backed dates for career, education, health, safety, technology, environment and civic awareness—ranked for your interests by a transparent ML model.</p>
+            <div class="welcome-actions">
+                <a class="primary-link" href="/dashboard#planner">Find my events <span>→</span></a>
+                <a class="secondary-link" href="/dashboard#calendar">Explore 2026–27 calendar</a>
+            </div>
+            <div class="welcome-stats">
+                <div><strong>44</strong><span>source-backed records</span></div>
+                <div><strong>2</strong><span>planning years</span></div>
+                <div><strong>10</strong><span>public-impact areas</span></div>
+            </div>
+        </div>
+        <div class="welcome-preview">
+            <div class="preview-window">
+                <div class="preview-bar"><i></i><i></i><i></i><span>YOUR EVENT SNAPSHOT</span></div>
+                <div class="preview-date"><span>JUL</span><strong>15</strong><small>WEDNESDAY · 2026</small></div>
+                <div class="preview-event"><span>CAREER &amp; SKILLS</span><h2>World Youth Skills Day</h2><p>Nationwide · Local and online programmes</p></div>
+                <div class="preview-risk"><div><small>WHO IT HELPS</small><strong>Students and early-career learners</strong></div><b>Build a skill</b></div>
+                <div class="preview-trust">✓ Annual date verified through the United Nations</div>
+            </div>
+            <span class="floating-tag one">Source-aware</span>
+            <span class="floating-tag two">No fake counts</span>
+        </div>
+    </section>
+
+    <section class="how-section">
+        <div class="how-heading"><span>HOW IT WORKS</span><h2>Three steps. One clear plan.</h2></div>
+        <div class="how-grid">
+            <article><span class="how-number">01</span><div class="how-icon purple">✦</div><h3>Choose what matters</h3><p>Select the causes, skills or public-interest topics you care about.</p></article>
+            <article><span class="how-number">02</span><div class="how-icon amber">◒</div><h3>See how it ranked</h3><p>Compare ML relevance, practical fit and the reason behind every score.</p></article>
+            <article><span class="how-number">03</span><div class="how-icon green">✓</div><h3>Take your Action Brief</h3><p>See who the event helps, why it matters, how to participate and where to verify details.</p></article>
+        </div>
+    </section>
+
+    <section class="responsible-banner">
+        <div><span>RESPONSIBLE BY DESIGN</span><h2>Useful guidance without invented events or fake live data.</h2></div>
+        <p>Event to Impact verifies annual dates, marks local programme details for recheck and keeps its recommendation and public-activity scores separate.</p>
+        <a href="/dashboard#method">See the method →</a>
+    </section>
+</main>
+
+<footer class="welcome-footer"><strong>Event to Impact</strong><span>Discover events that matter.</span><p>Final-year responsible AI product prototype</p></footer>
+</body>
+</html>

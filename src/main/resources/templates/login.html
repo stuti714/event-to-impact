@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sign in to Event to Impact, a source-aware discovery platform for meaningful events and awareness programmes.">
+    <title>Sign in · Event to Impact</title>
+    <link rel="stylesheet" href="/css/auth.css">
+</head>
+<body class="auth-page">
+<main class="auth-shell">
+    <section class="auth-story">
+        <a class="auth-brand" href="/login">
+            <span class="auth-brand-mark">E</span>
+            <span><strong>Event to Impact</strong><small>INDIA</small></span>
+        </a>
+        <div class="story-content">
+            <span class="story-kicker"><i></i> EVENTS WITH PURPOSE</span>
+            <h1>Know what matters.<br>Join with purpose.</h1>
+            <p>Discover useful events and awareness days across India—with a clear explanation of who they help, why they matter and how to participate.</p>
+            <div class="story-proof">
+                <div><span>01</span><p><strong>Personal relevance</strong><small>Recommendations matched to your interests</small></p></div>
+                <div><span>02</span><p><strong>Real-world value</strong><small>Career, health, safety, education and civic awareness</small></p></div>
+                <div><span>03</span><p><strong>Source trust</strong><small>Every date linked to a public source</small></p></div>
+            </div>
+        </div>
+        <p class="story-footer">2026–2027 India planning prototype</p>
+    </section>
+
+    <section class="auth-form-side">
+        <div class="login-card">
+            <span class="secure-pill">● SECURE ACCOUNT ACCESS</span>
+            <h2>Sign in to your account</h2>
+            <p class="login-intro">Continue to your nationwide event and awareness planner.</p>
+
+            <div class="form-message error" th:if="${param.error}">
+                The username or password is incorrect. Check the details and try again.
+            </div>
+            <div class="form-message success" th:if="${param.logout}">
+                You have signed out successfully.
+            </div>
+            <div class="form-message success" th:if="${param.registered}">
+                Account created successfully. Sign in with your new username and password.
+            </div>
+
+            <form class="login-form" method="post" th:action="@{/login}">
+                <label for="username">Username</label>
+                <div class="input-wrap">
+                    <span>◎</span>
+                    <input id="username" name="username" type="text" placeholder="Enter your username" autocomplete="username" required autofocus>
+                </div>
+
+                <label for="password">Password</label>
+                <div class="input-wrap">
+                    <span>⌁</span>
+                    <input id="password" name="password" type="password" placeholder="Enter your password" autocomplete="current-password" required>
+                    <button id="togglePassword" type="button" aria-label="Show password">Show</button>
+                </div>
+
+                <button class="login-button" type="submit">Sign in to Event to Impact <span>→</span></button>
+            </form>
+
+            <div class="account-switch">New to Event to Impact? <a href="/register">Create an account</a></div>
+            
+            <p class="privacy-line">BCrypt password protection · Persistent local accounts</p>
+        </div>
+    </section>
+</main>
+<script>
+    const toggle = document.getElementById('togglePassword');
+    const password = document.getElementById('password');
+    toggle.addEventListener('click', () => {
+        const reveal = password.type === 'password';
+        password.type = reveal ? 'text' : 'password';
+        toggle.textContent = reveal ? 'Hide' : 'Show';
+    });
+</script>
+</body>
+</html>

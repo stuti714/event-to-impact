@@ -1,0 +1,21 @@
+services:
+  ml:
+    build:
+      context: .
+      dockerfile: ml_service/Dockerfile
+    ports:
+      - "8001:8001"
+
+  web:
+    build: .
+    environment:
+      ML_SERVICE_URL: http://ml:8001
+    depends_on:
+      - ml
+    ports:
+      - "8082:8082"
+    volumes:
+      - event_to_impact_data:/app/data
+
+volumes:
+  event_to_impact_data:

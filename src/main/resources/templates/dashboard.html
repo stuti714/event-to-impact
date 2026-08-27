@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Event to Impact — source-aware discovery for useful events and awareness programmes in 2026 and 2027.">
+    <meta name="_csrf" th:content="${_csrf.token}">
+    <meta name="_csrf_header" th:content="${_csrf.headerName}">
+    <title>Discover meaningful events · Event to Impact</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/dashboard-v3.css">
+</head>
+<body>
+<div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+        <a class="brand" href="/welcome" aria-label="Event to Impact welcome page">
+            <span class="brand-mark">E</span>
+            <span><strong>Event to Impact</strong><small>INDIA</small></span>
+        </a>
+        <nav aria-label="Primary navigation">
+            <button class="nav-link active" data-target="planner"><span>✦</span>Find my events</button>
+            <button class="nav-link" data-target="calendar"><span>▦</span>Explore events</button>
+            <button class="nav-link" data-target="alerts"><span>!</span>Verification alerts <b id="navAlertCount">0</b></button>
+            <button class="nav-link" data-target="method"><span>◎</span>How it works</button>
+        </nav>
+        <div class="sidebar-note">
+            <span class="pulse"></span>
+            <div><strong>Source-aware</strong><small>Reviewed 02 Aug 2026</small></div>
+        </div>
+        <p class="privacy">No camera · No tracking<br>No invented local programmes</p>
+    </aside>
+
+    <main id="top">
+        <header class="topbar">
+            <button class="menu-button" id="menuButton" aria-label="Toggle menu">☰</button>
+            <div><span class="eyebrow">Event to Impact</span><h1>Events that matter</h1></div>
+            <div class="top-actions">
+                <div class="live-clock"><span id="currentTime">--:--</span><small>India · IST</small></div>
+                <a class="button ghost top-link" href="/welcome">Home</a>
+                <form class="logout-form" method="post" th:action="@{/logout}"><button class="button primary" type="submit">Sign out</button></form>
+            </div>
+        </header>
+
+        <div class="page-content">
+            <section class="assurance-strip" aria-label="Data summary">
+                <p><span>✓</span><strong><b id="totalEvents">—</b> source-backed events</strong> across 2026–2027</p>
+                <p><span>✓</span><strong><b id="verifiedDates">—</b> verified or fixed dates</strong></p>
+                <p><span>i</span><strong><b id="tentativeDates">—</b> local programmes</strong> marked for 2027 recheck</p>
+                <button id="openMethod">Why this matters →</button>
+            </section>
+
+            <section class="planner-section" id="planner">
+                <div class="simple-heading">
+                    <div><span class="eyebrow">PERSONALIZED DISCOVERY</span><h2>What do you want to learn or support?</h2><p>Choose your priorities. Event to Impact will return one clear, useful recommendation—not a confusing wall of data.</p></div>
+                    <span class="step-label">STEP 1 OF 2 · PREFERENCES</span>
+                </div>
+
+                <form class="planner-card simplified" id="plannerForm">
+                    <div class="interest-field">
+                        <label>Choose one or more public-impact areas</label>
+                        <div class="chip-picker" id="interestPicker">
+                            <button type="button" class="choice-chip selected" data-value="career skills youth">Career &amp; skills</button>
+                            <button type="button" class="choice-chip selected" data-value="education science literacy">Education</button>
+                            <button type="button" class="choice-chip" data-value="health wellbeing mental health yoga">Health</button>
+                            <button type="button" class="choice-chip" data-value="technology cyber security science">Technology</button>
+                            <button type="button" class="choice-chip" data-value="environment water earth climate">Environment</button>
+                            <button type="button" class="choice-chip" data-value="safety cyber awareness">Safety</button>
+                            <button type="button" class="choice-chip" data-value="civic constitution voter national service">Civic</button>
+                            <button type="button" class="choice-chip" data-value="inclusion women girls rights accessibility">Inclusion</button>
+                        </div>
+                    </div>
+                    <div class="main-preferences">
+                        <div class="field-block"><label for="planYear">Planning year</label><select id="planYear"><option value="2026">2026</option><option value="2027">2027</option></select></div>
+                        <div class="field-block"><label for="crowdTolerance">Public-activity comfort</label><select id="crowdTolerance"><option value="LOW">Prefer smaller activities</option><option value="MODERATE" selected>Comfortable with moderate activity</option><option value="HIGH">Large public programmes are fine</option></select></div>
+                        <div class="field-block"><label for="companions">Participating with</label><select id="companions"><option value="SOLO">Solo</option><option value="FRIENDS">Friends</option><option value="FAMILY">Family</option><option value="STUDENTS" selected>Student group</option></select></div>
+                    </div>
+                    <details class="more-preferences">
+                        <summary>More preferences <span>Optional</span></summary>
+                        <div class="optional-fields">
+                            <div class="field-block"><label for="environment">Setting</label><select id="environment"><option value="ANY">Online, indoor or outdoor</option><option value="INDOOR">Indoor / online preferred</option><option value="OUTDOOR">Outdoor preferred</option></select></div>
+                            <label class="check-field"><input type="checkbox" id="accessibleOnly"><span>Show accessibility-friendly records only</span></label>
+                        </div>
+                    </details>
+                    <div class="planner-action">
+                        <p><span>⌁</span> Your choices stay in this browser session.</p>
+                        <button class="button primary recommend-button" type="submit">Find meaningful events <span>→</span></button>
+                    </div>
+                </form>
+
+                <div class="recommendation-panel hidden" id="recommendationPanel">
+                    <div class="recommendation-title"><div><span class="eyebrow">STEP 2 OF 2 · YOUR RESULT</span><h3>Your Action Brief</h3></div><button class="button ghost" id="clearRecommendations">Change preferences</button></div>
+                    <div class="brief-results" id="recommendationGrid"></div>
+                </div>
+            </section>
+
+            <section class="calendar-section" id="calendar">
+                <div class="simple-heading calendar-heading">
+                    <div><span class="eyebrow">EXPLORE THE NATIONWIDE DATASET</span><h2>2026–27 awareness calendar</h2><p>Browse annual observances and useful public-interest events, with local programme certainty shown clearly.</p></div>
+                    <div class="year-tabs" role="group" aria-label="Select year"><button class="year-tab active" data-year="2026">2026</button><button class="year-tab" data-year="2027">2027</button></div>
+                </div>
+                <div class="filter-bar">
+                    <label class="search-box"><span>⌕</span><input id="searchInput" type="search" placeholder="Search an event, topic or audience"></label>
+                    <select id="categoryFilter"><option value="">All impact areas</option><option>Career</option><option>Civic</option><option>Education</option><option>Environment</option><option>Health</option><option>Inclusion</option><option>Livelihood</option><option>National</option><option>Safety</option><option>Technology</option></select>
+                    <label class="compact-check"><input type="checkbox" id="freeFilter"> Free participation</label>
+                    <span class="result-count" id="resultCount">Loading…</span>
+                </div>
+                <div class="timeline" id="eventTimeline"><div class="skeleton"></div><div class="skeleton"></div></div>
+            </section>
+
+            <section class="lower-grid supporting-sections">
+                <article class="alerts-panel" id="alerts">
+                    <div class="panel-heading"><div><span class="eyebrow">ONLY WHAT NEEDS ACTION</span><h2>Verification alerts</h2></div><span class="count-badge" id="panelAlertCount">0</span></div>
+                    <div class="alert-list" id="alertList"></div>
+                </article>
+                <article class="method-panel" id="method">
+                    <span class="eyebrow">TRANSPARENT BY DESIGN</span><h2>Two clear engines</h2>
+                    <p>The recommendation model matches your interests with event purpose, audience and impact. Public-activity context remains a transparent rule—not a live people count.</p>
+                    <div class="model-status-card" id="modelStatusCard">
+                        <div class="model-status-head"><span class="model-dot" id="modelStatusDot"></span><div><small>RECOMMENDATION ENGINE</small><strong id="modelMode">Checking model…</strong></div><b id="modelVersion">—</b></div>
+                        <p id="modelAlgorithm">Connecting to the local Event to Impact ML service.</p>
+                        <div class="model-metrics"><span><b id="indexedEvents">—</b> events indexed</span><span><b id="vocabularySize">—</b> learned terms</span><span><b id="feedbackSamples">—</b> feedback samples</span></div>
+                    </div>
+                    <div class="risk-scale"><span class="low">Low</span><span class="moderate">Moderate</span><span class="high">High</span></div>
+                    <ul>
+                        <li><b>TF-IDF match</b><span>Interests compared with purpose, audience, title and tags</span></li>
+                        <li><b>Practical fit</b><span>Year, companions, accessibility and activity preference</span></li>
+                        <li><b>Public-activity context</b><span>Popularity, weekend, holiday, online and timing rules</span></li>
+                    </ul>
+                    <button class="button secondary" id="methodDetails">Read the methodology</button>
+                </article>
+            </section>
+        </div>
+        <footer><div><strong>Event to Impact</strong><span>Discover events that matter.</span></div><p>Source-aware planning · No invented local programmes</p></footer>
+    </main>
+</div>
+
+<dialog id="eventDialog" class="event-dialog"><button class="dialog-close" aria-label="Close">×</button><div id="dialogContent"></div></dialog>
+<div class="toast" id="toast" role="status"></div>
+<script src="/js/app.js"></script>
+</body>
+</html>

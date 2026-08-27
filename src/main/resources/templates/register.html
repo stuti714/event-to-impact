@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Create a secure Event to Impact account.">
+    <title>Create account · Event to Impact</title>
+    <link rel="stylesheet" href="/css/auth.css">
+</head>
+<body class="auth-page">
+<main class="auth-shell">
+    <section class="auth-story">
+        <a class="auth-brand" href="/login">
+            <span class="auth-brand-mark">E</span>
+            <span><strong>Event to Impact</strong><small>INDIA</small></span>
+        </a>
+        <div class="story-content">
+            <span class="story-kicker"><i></i> YOUR INTERESTS, YOUR PLAN</span>
+            <h1>Create once.<br>Discover with purpose.</h1>
+            <p>Your account keeps authentication secure while Event to Impact learns only from the event feedback you deliberately provide.</p>
+            <div class="story-proof">
+                <div><span>01</span><p><strong>Private credentials</strong><small>Passwords are stored only as BCrypt hashes</small></p></div>
+                <div><span>02</span><p><strong>Persistent access</strong><small>Your account remains available after restart</small></p></div>
+                <div><span>03</span><p><strong>Responsible learning</strong><small>Feedback improves relevance, not crowd surveillance</small></p></div>
+            </div>
+        </div>
+        <p class="story-footer">Secure local account prototype · 2026–2027</p>
+    </section>
+
+    <section class="auth-form-side">
+        <div class="login-card">
+            <span class="secure-pill">● CREATE YOUR ACCOUNT</span>
+            <h2>Start with Event to Impact</h2>
+            <p class="login-intro">Choose a username and password. No email or personal profile is required.</p>
+
+            <div class="form-message error" th:if="${registrationError}" th:text="${registrationError}"></div>
+
+            <form class="login-form" method="post" th:action="@{/register}">
+                <label for="username">Choose a username</label>
+                <div class="input-wrap">
+                    <span>◎</span>
+                    <input id="username" name="username" type="text" th:value="${attemptedUsername}"
+                           placeholder="Example: stuti_aiml" minlength="3" maxlength="30"
+                           pattern="[A-Za-z0-9._-]{3,30}" autocomplete="username" required autofocus>
+                </div>
+                <p class="field-hint">3–30 characters · letters, numbers, dot, underscore or hyphen</p>
+
+                <label for="password">Create a password</label>
+                <div class="input-wrap">
+                    <span>⌁</span>
+                    <input id="password" name="password" type="password" placeholder="Minimum 6 characters"
+                           minlength="6" maxlength="72" autocomplete="new-password" required>
+                    <button id="togglePassword" type="button" aria-label="Show password">Show</button>
+                </div>
+
+                <button class="login-button" type="submit">Create my account <span>→</span></button>
+            </form>
+
+            <div class="account-switch">Already registered? <a href="/login">Sign in instead</a></div>
+            <p class="privacy-line">No email required · Password stored as a secure hash</p>
+        </div>
+    </section>
+</main>
+<script>
+    const toggle = document.getElementById('togglePassword');
+    const password = document.getElementById('password');
+    toggle.addEventListener('click', () => {
+        const reveal = password.type === 'password';
+        password.type = reveal ? 'text' : 'password';
+        toggle.textContent = reveal ? 'Hide' : 'Show';
+    });
+</script>
+</body>
+</html>

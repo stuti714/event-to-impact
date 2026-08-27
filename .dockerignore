@@ -1,0 +1,10 @@
+.git
+.github
+.idea
+.vscode
+.venv
+.maven-local
+target
+ml_service/runtime
+__pycache__
+*.log
