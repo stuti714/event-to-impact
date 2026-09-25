@@ -109,9 +109,6 @@ Example request:
 }
 ```
 
-## Interview explanation
-
-> “Event to Impact is a hybrid event recommender. A TF-IDF vectorizer learns unigrams and bigrams from each event's title, purpose, audience, impact goal and tags. Cosine similarity measures alignment with the user's selected interests. A separate practical-fit score handles companions, accessibility, participation setting and public-activity preference. Explicit Interested, Saved and Not-for-me feedback becomes labeled data; after ten mixed samples, logistic regression adds a learned preference probability. The model does not predict attendance. Annual dates are source-backed, local programme uncertainty is visible, and the system exposes score components, limitations and an offline rules fallback.”
 
 ## Dataset policy
 
