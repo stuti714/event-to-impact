@@ -133,26 +133,3 @@ $env:DB_PASSWORD="your_password"
 
 H2 is the default and requires no database installation.
 
-## Push to GitHub
-
-Create an empty repository named `event-to-impact`, then run inside this folder:
-
-```powershell
-git init
-git add .
-git commit -m "Build Event to Impact explainable event recommender"
-git branch -M main
-git remote add origin https://github.com/YOUR_USERNAME/event-to-impact.git
-git push -u origin main
-```
-
-## Resume bullets
-
-- Built Event to Impact, a secured explainable-AI platform with persistent BCrypt-protected user registration that ranks 44 source-backed 2026–2027 public-interest events using TF-IDF and cosine similarity.
-- Implemented a real-feedback learning loop with JPA persistence and logistic regression, activated only after valid positive and negative labels meet a minimum threshold.
-- Designed a provenance and uncertainty model that separates fixed annual dates from unconfirmed local programmes instead of inventing schedules or attendance.
-- Integrated Spring Boot, FastAPI, scikit-learn, Spring Security, REST APIs, responsive UI, automated tests, Docker Compose and GitHub Actions with an explicit offline fallback.
-
-## Responsible scope
-
-This is a final-year proof of concept, not an emergency-management, medical, election-administration or attendance-forecast system. Users must verify local organisers and current official guidance before participating.
